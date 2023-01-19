@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -38,7 +39,6 @@ class _HomepageState extends State<Homepage> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          toolbarHeight: 100,
           title: const Text(
             'Register',
             style: TextStyle(color: Colors.blueAccent),
@@ -52,6 +52,8 @@ class _HomepageState extends State<Homepage> {
             children: [
               TextFormField(
                 controller: _email,
+                autocorrect: false,
+                keyboardType: TextInputType.emailAddress,
                 cursorColor: Colors.lightBlueAccent,
                 onChanged: (_) {},
                 decoration: InputDecoration(
@@ -81,6 +83,8 @@ class _HomepageState extends State<Homepage> {
               ),
               TextFormField(
                 controller: _password,
+                enableSuggestions: false,
+                autocorrect: false,
                 obscureText: true,
                 cursorColor: Colors.lightBlueAccent,
                 onChanged: (_) {},
@@ -109,7 +113,19 @@ class _HomepageState extends State<Homepage> {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(onPressed: () {}, child: const Text('Register'))
+              ElevatedButton(
+                onPressed: () async {
+                  final email = _email.text;
+                  final password = _password.text;
+                  final userCredential = await FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                    email: email,
+                    password: password,
+                  );
+                  print(userCredential);
+                },
+                child: const Text('Register'),
+              )
             ],
           ),
         ),
