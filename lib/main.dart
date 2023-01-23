@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notepad/views/login_view.dart';
 import 'package:notepad/views/register_view.dart';
 
 void main() {
@@ -9,6 +10,6 @@ void main() {
       primarySwatch: Colors.blue,
     ),
     debugShowCheckedModeBanner: false,
-    home: const RegisterView(),
+    home: const LoginView(),
   ));
 }

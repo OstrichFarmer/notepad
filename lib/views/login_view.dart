@@ -119,15 +119,17 @@ class _LoginViewState extends State<LoginView> {
                         ),
                         ElevatedButton(
                           onPressed: () async {
-                            final email = _email.text;
-                            final password = _password.text;
-                            final userCredential = await FirebaseAuth.instance
-                                .signInWithEmailAndPassword(
-                              email: email,
-                              password: password,
-                            );
-                            // ignore: avoid_print
-                            print(userCredential);
+                            try {
+                              final email = _email.text;
+                              final password = _password.text;
+                              final userCredential = await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                email: email,
+                                password: password,
+                              );
+                            } on FirebaseAuthException catch (e) {
+                              print(e.code);
+                            }
                           },
                           child: const Text('Login'),
                         )
