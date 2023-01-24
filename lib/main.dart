@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notepad/views/login_view.dart';
-import 'package:notepad/views/register_view.dart';
+import 'package:notepad/views/hompage_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized;
@@ -10,6 +9,6 @@ void main() {
       primarySwatch: Colors.blue,
     ),
     debugShowCheckedModeBanner: false,
-    home: const LoginView(),
+    home: const Homepage(),
   ));
 }
