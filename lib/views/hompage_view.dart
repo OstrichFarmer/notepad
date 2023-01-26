@@ -19,16 +19,20 @@ class Homepage extends StatelessWidget {
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.done:
-                // final user = FirebaseAuth.instance.currentUser;
-                // if (user?.emailVerified ?? false) {
-                //   return const Text('Done');
-                // } else {
-                //   return const VerifyEmailView();
-                // }
-                return LoginView();
+                final user = FirebaseAuth.instance.currentUser;
+                if (user != null) {
+                  if (user.emailVerified) {
+                    print('User is verified');
+                  } else {
+                    return const VerifyEmailView();
+                  }
+                } else {
+                  return const LoginView();
+                }
+                return const Text('Done');
 
               default:
-                return const Text('Loading....');
+                return const CircularProgressIndicator();
             }
           }),
     );
