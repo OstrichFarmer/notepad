@@ -32,116 +32,93 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: const Text(
-            'Register',
-            style: TextStyle(color: Colors.blueAccent),
-          ),
-          centerTitle: true,
-        ),
-        body: FutureBuilder(
-            future: Firebase.initializeApp(
-                options: DefaultFirebaseOptions.currentPlatform),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.done:
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 25, right: 25),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextFormField(
-                          controller: _email,
-                          autocorrect: false,
-                          keyboardType: TextInputType.emailAddress,
-                          cursorColor: Colors.lightBlueAccent,
-                          onChanged: (_) {},
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            labelText: 'Enter your Email',
-                            labelStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(
-                                color: Colors.lightBlueAccent,
-                              ),
-                            ),
-                            contentPadding: const EdgeInsets.all(10),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        TextFormField(
-                          controller: _password,
-                          enableSuggestions: false,
-                          autocorrect: false,
-                          obscureText: true,
-                          cursorColor: Colors.lightBlueAccent,
-                          onChanged: (_) {},
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            labelText: 'Enter your Password',
-                            labelStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(
-                                color: Colors.lightBlueAccent,
-                              ),
-                            ),
-                            contentPadding: const EdgeInsets.all(10),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        ElevatedButton(
-                          onPressed: () async {
-                            try {
-                              final email = _email.text;
-                              final password = _password.text;
-                              final userCredential = await FirebaseAuth.instance
-                                  .createUserWithEmailAndPassword(
-                                email: email,
-                                password: password,
-                              );
-                            } on FirebaseAuthException catch (e) {
-                              print(e.code);
-                            }
-                          },
-                          child: const Text('Register'),
-                        )
-                      ],
+        onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 25, right: 25),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextFormField(
+                controller: _email,
+                autocorrect: false,
+                keyboardType: TextInputType.emailAddress,
+                cursorColor: Colors.lightBlueAccent,
+                onChanged: (_) {},
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  labelText: 'Enter your Email',
+                  labelStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      color: Colors.lightBlueAccent,
                     ),
-                  );
-                default:
-                  return const Text('Loading....');
-              }
-            }),
-      ),
-    );
+                  ),
+                  contentPadding: const EdgeInsets.all(10),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              TextFormField(
+                controller: _password,
+                enableSuggestions: false,
+                autocorrect: false,
+                obscureText: true,
+                cursorColor: Colors.lightBlueAccent,
+                onChanged: (_) {},
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  labelText: 'Enter your Password',
+                  labelStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      color: Colors.lightBlueAccent,
+                    ),
+                  ),
+                  contentPadding: const EdgeInsets.all(10),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    final email = _email.text;
+                    final password = _password.text;
+                    final userCredential = await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                      email: email,
+                      password: password,
+                    );
+                  } on FirebaseAuthException catch (e) {
+                    print(e.code);
+                  }
+                },
+                child: const Text('Register'),
+              )
+            ],
+          ),
+        ));
   }
 }
