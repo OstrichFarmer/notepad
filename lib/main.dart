@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notepad/views/hompage_view.dart';
+import 'package:notepad/views/login_view.dart';
+import 'package:notepad/views/register_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized;
@@ -10,5 +12,9 @@ void main() {
     ),
     debugShowCheckedModeBanner: false,
     home: const Homepage(),
+    routes: {
+      '/login/': (context) => LoginView(),
+      '/register/': (context) => RegisterView()
+    },
   ));
 }
