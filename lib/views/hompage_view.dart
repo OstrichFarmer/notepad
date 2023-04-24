@@ -31,7 +31,7 @@ class Homepage extends StatelessWidget {
                 return const Text('Done');
 
               default:
-                return const CircularProgressIndicator();
+                return const Center(child: const CircularProgressIndicator());
             }
           }),
     );
