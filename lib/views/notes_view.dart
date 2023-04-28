@@ -16,7 +16,22 @@ class _NotesViewState extends State<NotesView> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Main UI'),
+        actions: [
+          PopupMenuButton<MenuAction>(
+            onSelected: (value) {},
+            itemBuilder: ((context) {
+              return const [
+                PopupMenuItem<MenuAction>(
+                  value: MenuAction.logout,
+                  child: Text('Logout'),
+                )
+              ];
+            }),
+          )
+        ],
       ),
     );
   }
 }
+
+enum MenuAction { logout }
