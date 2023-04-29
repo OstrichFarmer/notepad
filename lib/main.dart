@@ -13,8 +13,8 @@ void main() {
     debugShowCheckedModeBanner: false,
     home: const Homepage(),
     routes: {
-      '/login/': (context) => LoginView(),
-      '/register/': (context) => RegisterView()
+      '/login/': (context) => const LoginView(),
+      '/register/': (context) => const RegisterView()
     },
   ));
 }
