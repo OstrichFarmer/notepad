@@ -114,14 +114,22 @@ class _LoginViewState extends State<LoginView> {
                     try {
                       final email = _email.text;
                       final password = _password.text;
-                      final userCredential = await FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: email,
                         password: password,
                       );
-                      devtools.log(userCredential.toString());
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/notes/',
+                        (route) => false,
+                      );
                     } on FirebaseAuthException catch (e) {
-                      devtools.log(e.code);
+                      if (e.code == 'weak-password') {
+                        devtools.log('weak password');
+                      } else if (e.code == 'email-already-in-use') {
+                        devtools.log('email already in use');
+                      } else if (e.code == 'invalid-email') {
+                        devtools.log('invalid email entered');
+                      }
                     }
                   },
                   child: const Text('Login'),
