@@ -125,12 +125,10 @@ class _LoginViewState extends State<LoginView> {
                         (route) => false,
                       );
                     } on FirebaseAuthException catch (e) {
-                      if (e.code == 'weak-password') {
-                        devtools.log('weak password');
-                      } else if (e.code == 'email-already-in-use') {
-                        devtools.log('email already in use');
-                      } else if (e.code == 'invalid-email') {
-                        devtools.log('invalid email entered');
+                      if (e.code == 'user-not-found') {
+                        await showErrorDialog(context, 'User not found');
+                      } else if (e.code == 'wrong-password') {
+                        await showErrorDialog(context, 'Wrong password');
                       }
                     }
                   },
@@ -153,4 +151,26 @@ class _LoginViewState extends State<LoginView> {
           ),
         ));
   }
+}
+
+Future<void> showErrorDialog(
+  BuildContext context,
+  String text,
+) {
+  return showDialog(
+      context: context,
+      builder: ((context) {
+        return AlertDialog(
+          title: const Text('An Error Occured'),
+          content: Text(text),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Ok'),
+            )
+          ],
+        );
+      }));
 }
