@@ -4,6 +4,7 @@ import 'package:notepad/views/hompage_view.dart';
 import 'package:notepad/views/login_view.dart';
 import 'package:notepad/views/notes_view.dart';
 import 'package:notepad/views/register_view.dart';
+import 'package:notepad/views/verify_email_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized;
@@ -17,7 +18,8 @@ void main() {
     routes: {
       loginRoute: (context) => const LoginView(),
       registerRoute: (context) => const RegisterView(),
-      notesRoute: (context) => const NotesView()
+      notesRoute: (context) => const NotesView(),
+      verifyEmailRoute: (context) => const VerifyEmailView()
     },
   ));
 }
