@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:notepad/enums/menu_action.dart';
 import 'package:notepad/views/constants/routes.dart';
 
 class NotesView extends StatefulWidget {
@@ -43,8 +44,6 @@ class _NotesViewState extends State<NotesView> {
     );
   }
 }
-
-
 
 Future<bool> showLogOutDialog(BuildContext context) {
   return showDialog<bool>(

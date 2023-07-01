@@ -9,7 +9,7 @@ import 'package:notepad/views/verify_email_view.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized;
   runApp(MaterialApp(
-    title: 'Flutter Demo',
+    title: 'Notepad',
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
