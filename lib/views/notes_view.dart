@@ -44,7 +44,7 @@ class _NotesViewState extends State<NotesView> {
   }
 }
 
-enum MenuAction { logout }
+
 
 Future<bool> showLogOutDialog(BuildContext context) {
   return showDialog<bool>(
