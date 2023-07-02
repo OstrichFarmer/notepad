@@ -3,7 +3,6 @@ import 'package:notepad/services/auth/auth_services.dart';
 import 'package:notepad/views/login_view.dart';
 import 'package:notepad/views/notes_view.dart';
 import 'package:notepad/views/verify_email_view.dart';
-import '../firebase_options.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
